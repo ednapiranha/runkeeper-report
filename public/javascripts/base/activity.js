@@ -106,13 +106,11 @@ define(['jquery', 'asyncStorage'],
     };
 
     var getActivityDetail = function (id) {
-      console.log('got here')
       $.ajax({
         url: '/activity/' + id,
         method: 'GET',
         dataType: 'json'
       }).done(function (data) {
-        console.log(data.activity)
         asyncStorage.setItem('activity:' + id, {
           id: id,
           duration: data.activity.duration,
