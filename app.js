@@ -30,7 +30,7 @@ var isLoggedIn = function(req, res, next) {
 passport.use(new RunkeeperStrategy({
     clientID: nconf.get('rk_client_id'),
     clientSecret: nconf.get('rk_client_secret'),
-    callbackURL: "http://127.0.0.1:3000/auth/runkeeper/callback"
+    callbackURL: nconf.get('domain') + ':' + nconf.get('port') + '/auth/runkeeper/callback'
   },
   function (accessToken, refreshToken, profile, done) {
     process.nextTick(function (err) {

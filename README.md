@@ -20,4 +20,4 @@ Sign into Runkeeper and register an app [http://runkeeper.com/partner/applicatio
 
 Copy your client id and secret to local.json under rk_client_id and rk_client_secret.
 
-For the url on your local machine, set it to `http://127.0.0.1:3000` and set the callback url to ``http://127.0.0.1:3000/auth/runkeeper/callback`
+For the url on your local machine, set it to `http://127.0.0.1:3000` and set the callback url to `http://127.0.0.1:3000/auth/runkeeper/callback`
