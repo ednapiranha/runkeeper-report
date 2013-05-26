@@ -46,3 +46,60 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+
+@font-face {
+    font-family: 'LeagueGothicRegular';
+    src: url('../fonts/LeagueGothic-Regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: Helvetica, Arial, sans-serif;
+    padding: 20px;
+}
+
+h1, h2, h3, .overview {
+    font-family: 'LeagueGothicRegular', Arial, sans-serif;
+    text-transform: uppercase;
+}
+
+h1, h2 {
+    font-size: 45px;
+}
+
+h3 {
+    display: inline;
+    font-size: 35px;
+}
+
+.overview span {
+    font-size: 55px;
+    letter-spacing: 1px;
+    margin-left: 20px;
+}
+
+ul.activities {
+    display: table;
+    width: 100%;
+}
+
+ul.activities li {
+    background-color: #eee;
+    clear: both;
+    display: table-row;
+    float: left;
+    margin-bottom: 5px;
+    padding: 5px 10px;
+}
+
+ul.activities li p {
+    display: table-col;
+    float: left;
+    font-size: 18px;
+    width: 200px;
+}
+
+ul.activities li p:last-child {
+    width: 300px;
+}

@@ -21,7 +21,7 @@ module.exports = function(app, configurations, express) {
     app.use(express.cookieParser());
     app.use(express.session({
       secret: nconf.get('session_secret'),
-      store: new RedisStore({ db: nconf.get('redis_db'), prefix: 'noodleapp' }),
+      store: new RedisStore({ db: nconf.get('redis_db'), prefix: 'rk' }),
       cookie: { maxAge: 990000000 } // 1 week-ish
     }));
     app.use(function (req, res, next) {
