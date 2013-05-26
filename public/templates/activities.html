@@ -1,16 +1,19 @@
-<h2>7 Day Overview</h2>
-<div class="overview">
-  <h3>Total Minutes</h3>
-  <span>{{ data.minutes }}</span>
+<div class="column">
+  <h2>7 Day Overview</h2>
+  <div class="overview">
+    <h3>Total Minutes</h3>
+    <span>{{ data.minutes }}</span>
+  </div>
 </div>
-
-<h2>Recent Activity</h2>
-<ul class="activities">
-  {% for activity in data.activities %}
-    <li>
-      <p>{{ activity.type }}</p>
-      <p>Duration: {{ activity.duration }}</p>
-      <p>{{ activity.startTime }}</p>
-    </li>
-  {% endfor %}
-</ul>
+<div class="column">
+  <h2>Recent Activity</h2>
+  <ul class="activities">
+    {% for activity in data.activities %}
+      <li>
+        <p>{{ activity.type }}</p>
+        <p class="duration">{{ activity.duration }}</p>
+        <p>{{ activity.startTime }}</p>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

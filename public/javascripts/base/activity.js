@@ -37,6 +37,38 @@ define(['jquery', 'asyncStorage'],
       return minutes;
     };
 
+    var formatDuration = function (data) {
+      for (var i = 0; i < data.length; i ++) {
+        var hourFrac = data[i].duration / 60 / 60;
+        var hour = Math.floor(hourFrac);
+        var minFrac = hourFrac % 1 * 60;
+        var minutes = Math.floor(minFrac);
+        var seconds = Math.floor(minFrac % 1 * 60);
+
+        if (hour > 0 && hour < 10) {
+          hour = '0' + hour;
+        }
+
+        if (minutes > 0 && minutes < 10) {
+          minutes = '0' + minutes;
+        }
+
+        if (seconds > 0 && seconds < 10) {
+          seconds = '0' + seconds;
+        }
+
+        if (hour > 0) {
+          data[i].duration = hour + ':' + minutes + ':' + seconds;
+        } else if (minutes > 0) {
+          data[i].duration = '00:' + minutes + ':' + seconds;
+        } else {
+          data[i].duration = '00:00:' + seconds;
+        }
+      }
+
+      return data;
+    };
+
     var loadCachedActivities = function (self, callback) {
       console.log('loading cached')
       asyncStorage.getItem('activityIds', function (data) {
@@ -49,7 +81,7 @@ define(['jquery', 'asyncStorage'],
             if (self.activities.length === self.activityIds.length) {
               callback(null, {
                 minutes: totalMinutes(self, self.activities),
-                activities: self.activities
+                activities: formatDuration(self.activities)
               });
             }
           });
@@ -73,6 +105,29 @@ define(['jquery', 'asyncStorage'],
       });
     };
 
+    var getActivityDetail = function (id) {
+      console.log('got here')
+      $.ajax({
+        url: '/activity/' + id,
+        method: 'GET',
+        dataType: 'json'
+      }).done(function (data) {
+        console.log(data.activity)
+        asyncStorage.setItem('activity:' + id, {
+          id: id,
+          duration: data.activity.duration,
+          startTime: data.activity.start_time,
+          totalDistance: data.activity.total_distance,
+          type: data.activity.type,
+          calories: data.activity.calories,
+          totalClimb: data.activity.total_climb,
+          path: data.activity.path
+        });
+      }).fail(function (err) {
+        console.log('could not get data for ', id, err);
+      });
+    };
+
     var cacheActivities = function (self, data) {
       for (var i = 0; i < data.length; i ++) {
         var id = parseInt(data[i].uri.split('/')[2], 10);
@@ -82,13 +137,7 @@ define(['jquery', 'asyncStorage'],
         }
 
         asyncStorage.setItem('activityIds', self.activityIds);
-        asyncStorage.setItem('activity:' + id, {
-          id: id,
-          duration: data[i].duration,
-          startTime: data[i].start_time,
-          totalDistance: data[i].total_distance,
-          type: data[i].type
-        });
+        getActivityDetail(id);
       }
     };
 
@@ -111,7 +160,7 @@ define(['jquery', 'asyncStorage'],
               cacheActivities(self, data);
               callback(null, {
                 minutes: totalMinutes(self, data),
-                activities: data
+                activities: formatDuration(data)
               });
             }
           });
