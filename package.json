@@ -1,0 +1,25 @@
+{
+  "name": "runkeeper-report",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">= 0.8.14",
+    "npm": "1.1.x"
+  },
+  "dependencies": {
+    "connect": ">= 2.7.6",
+    "express": ">= 3.2.0",
+    "jade": ">= 0.29.0",
+    "nconf": ">= 0.6.7",
+    "passport": "0.1.17",
+    "passport-runkeeper": "0.1.2",
+    "connect-redis": "1.4.5"
+  },
+  "devDependencies": {
+    "mocha": ">= 1.9.0",
+    "should": ">= 1.2.2"
+  },
+  "scripts": {
+    "test": "make test"
+  }
+}
