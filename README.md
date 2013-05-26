@@ -5,9 +5,13 @@ A lightweight reporting dashboard of your Runkeeper activities.
 ## Install
 
 > brew install redis
+
 > redis-server &
+
 > git clone git@github.com:ednapiranha/runkeeper-report.git
+
 > cp local.json-dist local.json
+
 > npm install
 
 ## Register your application
