@@ -14,7 +14,7 @@ define(['jquery', 'asyncStorage'],
 
     /**
      * Assuming that onl walking and hiking are moderate activities and count by the minute.
-     * All other activities are counted as 2 minutes of exercise per minute.
+     * Vigorous activities are counted as 2 minutes of exercise per minute.
      */
     var totalMinutes = function (self, data) {
       var minutes = 0;

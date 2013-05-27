@@ -86,6 +86,7 @@ h1, h2 {
 }
 
 h2 {
+    color: #bbb;
     margin: 20px 0 10px;
 }
 
@@ -173,7 +174,7 @@ ul.activities li.walking {
     background-color: #afd8ff;
 }
 
-ul.activities li.biking {
+ul.activities li.cycling {
     background-color: #ffdad2;
 }
 
