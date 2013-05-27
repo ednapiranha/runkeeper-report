@@ -94,23 +94,45 @@ h2:first-child {
 }
 
 h3 {
-    display: inline;
+    float: left;
     font-size: 35px;
 }
 
 .column {
     float: left;
-    width: 600px;
 }
 
 .column:first-child {
-    width: 300px;
+    margin-right: 10px;
+    overflow: hidden;
+    width: 280px;
+}
+
+.overview {
+    background-color: #3bbade;
+    border-radius: 2px;
+    color: #fff;
+    margin-bottom: 10px;
+    padding: 11px 10px 0 10px;
+    text-shadow: #40a0bc -1px -1px 0;
+    white-space: nowrap;
 }
 
 .overview span {
     font-size: 55px;
     letter-spacing: 1px;
-    margin-left: 20px;
+}
+
+.overview h3 {
+    color: #b2eeff;
+    font-size: 28px;
+    line-height: 50px;
+    white-space: nowrap;
+    width: 100px;
+}
+
+.overview small {
+    font-size: 25px;
 }
 
 ul.activities {
@@ -121,11 +143,12 @@ ul.activities {
 
 ul.activities li {
     background-color: #eee;
+    border-radius: 2px;
     clear: both;
     display: table-row;
     float: left;
-    margin-bottom: 5px;
-    padding: 5px 10px;
+    margin-bottom: 2px;
+    padding: 7px 10px;
 }
 
 ul.activities li p {
@@ -136,6 +159,26 @@ ul.activities li p {
     font-size: 16px;
     font-weight: 100;
     line-height: 22px;
+}
+
+ul.activities li.hiking {
+    background-color: #fff9b2;
+}
+
+ul.activities li.running {
+    background-color: #e1fa9d;
+}
+
+ul.activities li.walking {
+    background-color: #afd8ff;
+}
+
+ul.activities li.biking {
+    background-color: #ffdad2;
+}
+
+ul.activities li.swimming {
+    background-color: #95f7ed;
 }
 
 ul.activities li p.duration {
@@ -150,4 +193,14 @@ ul.activities li p:first-child {
 ul.activities li p:last-child {
     margin-left: 30px;
     width: 230px;
+}
+
+@media screen and (max-width: 510px) {
+    ul.activities li {
+        width: 260px;
+    }
+    ul.activities li p:last-child {
+        clear: both;
+        margin: 10px 0 0 0;
+    }
 }

@@ -8,6 +8,7 @@ define(['jquery', 'asyncStorage'],
   var Activity = function () {
     this.activityIds = [];
     this.activities = [];
+    this.calories = 0;
 
     var self = this;
 
@@ -31,10 +32,45 @@ define(['jquery', 'asyncStorage'],
               minutes += Math.round(data[i].duration / 60) * 2;
               break;
           }
+          self.calories += data[i].calories;
+        } else {
+          break;
         }
       }
 
       return minutes;
+    };
+
+    var totalDistance = function (self, data) {
+      var distance = 0;
+      for (var i = 0; i < data.length; i ++) {
+        var startTime = Date.parse(data[i].startTime || data[i].start_time) / 1000;
+        var day = (self.currentTime - startTime) / 60 / 60 / 24;
+
+        if (day < 8.0) {
+          distance += (data[i].totalDistance / 1000);
+        } else {
+          break;
+        }
+      }
+
+      return Math.round(distance);
+    };
+
+     var totalCalories = function (self, data) {
+      var calories = 0;
+      for (var i = 0; i < data.length; i ++) {
+        var startTime = Date.parse(data[i].startTime || data[i].start_time) / 1000;
+        var day = (self.currentTime - startTime) / 60 / 60 / 24;
+
+        if (day < 8.0) {
+          calories += data[i].calories;
+        } else {
+          break;
+        }
+      }
+
+      return calories;
     };
 
     var formatDuration = function (data) {
@@ -79,8 +115,14 @@ define(['jquery', 'asyncStorage'],
             self.activities.push(activity);
 
             if (self.activities.length === self.activityIds.length) {
+              self.activities = self.activities.sort(function (a, b) {
+                return parseInt(b.id, 10) - parseInt(a.id, 10);
+              });
+
               callback(null, {
                 minutes: totalMinutes(self, self.activities),
+                distance: totalDistance(self, self.activities),
+                calories: totalCalories(self, self.activities),
                 activities: formatDuration(self.activities)
               });
             }
@@ -106,24 +148,26 @@ define(['jquery', 'asyncStorage'],
     };
 
     var getActivityDetail = function (id) {
-      $.ajax({
-        url: '/activity/' + id,
-        method: 'GET',
-        dataType: 'json'
-      }).done(function (data) {
-        asyncStorage.setItem('activity:' + id, {
-          id: id,
-          duration: data.activity.duration,
-          startTime: data.activity.start_time,
-          totalDistance: data.activity.total_distance,
-          type: data.activity.type,
-          calories: data.activity.calories,
-          totalClimb: data.activity.total_climb,
-          path: data.activity.path
+      setTimeout(function () {
+        $.ajax({
+          url: '/activity/' + id,
+          method: 'GET',
+          dataType: 'json'
+        }).done(function (data) {
+          asyncStorage.setItem('activity:' + id, {
+            id: id,
+            duration: data.activity.duration,
+            startTime: data.activity.start_time,
+            totalDistance: data.activity.total_distance,
+            type: data.activity.type,
+            calories: data.activity.total_calories,
+            totalClimb: data.activity.total_climb,
+            path: data.activity.path
+          });
+        }).fail(function (err) {
+          console.log('could not get data for ', id, err);
         });
-      }).fail(function (err) {
-        console.log('could not get data for ', id, err);
-      });
+      }, 1);
     };
 
     var cacheActivities = function (self, data) {
@@ -158,6 +202,8 @@ define(['jquery', 'asyncStorage'],
               cacheActivities(self, data);
               callback(null, {
                 minutes: totalMinutes(self, data),
+                distance: totalDistance(self, self.activities),
+                calories: totalCalories(self, self.activities),
                 activities: formatDuration(data)
               });
             }
