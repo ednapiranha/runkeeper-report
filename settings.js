@@ -14,7 +14,7 @@ module.exports = function(app, configurations, express) {
     app.set('view options', { layout: false });
     app.use(express.bodyParser());
     app.use(express.methodOverride());
-    if (!process.env.NODE_ENV) {
+    if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
       app.use(express.logger('dev'));
     }
     app.use(express.static(__dirname + '/public'));
@@ -37,22 +37,21 @@ module.exports = function(app, configurations, express) {
       res.render('404', { url: req.url, layout: false });
       return;
     });
+  });
+
+  app.configure('development', 'test', function () {
+    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
+  });
+
+  app.configure('prod', 'test', function () {
     app.use(function(req, res, next) {
       res.status(403);
       res.render('403', { url: req.url, layout: false });
       return;
     });
-    app.use(function(err, req, res, next) {
-      res.status(err.status || 500);
-      res.render('500', { error: err, layout: false });
-    });
   });
 
-  app.configure('development, test', function(){
-    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-  });
-
-  app.configure('prod', function(){
+  app.configure('prod', function () {
     app.use(express.errorHandler());
   });
 
