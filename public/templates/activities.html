@@ -6,11 +6,11 @@
   </div>
   <div class="overview">
     <h3>Distance</h3>
-    <span>{{ data.distance }} <small>km</small></span>
+    <span class="distance-value">{{ data.distance }}</span> <small>km</small>
   </div>
   <div class="overview">
     <h3>Calories</h3>
-    <span>{{ data.calories }}</span>
+    <span class="calorie-value">{{ data.calories }}</span>
   </div>
 </div>
 <div class="column">
@@ -18,10 +18,16 @@
   <ul class="activities">
     {% for activity in data.activities %}
       <li class="{{ activity.type.toLowerCase() }}">
-        <p>{{ activity.type }}</p>
-        <p class="duration">{{ activity.duration }}</p>
-        <p>{{ activity.startTime }}</p>
+        <a href="javascript:;" class="activity-link"
+           data-action="show-activity" data-id="{{ activity.id }}">
+          <p>{{ activity.type }}</p>
+          <p class="duration">{{ activity.duration }}</p>
+          <p>{{ activity.startTime }}</p>
+        </a>
       </li>
     {% endfor %}
   </ul>
+</div>
+<div id="detail" class="hidden">
+
 </div>

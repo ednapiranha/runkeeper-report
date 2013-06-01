@@ -5,10 +5,13 @@ define(['jquery', 'asyncStorage'],
   var RK_URL = 'https://api.runkeeper.com';
   var MAX_TIME = 3600; // 1 hour limit for hitting Runkeeper's server
 
+  var body = $('body');
+
   var Activity = function () {
     this.activityIds = [];
     this.activities = [];
     this.calories = 0;
+    this.detailCount = 0;
 
     var self = this;
 
@@ -147,7 +150,7 @@ define(['jquery', 'asyncStorage'],
       });
     };
 
-    var getActivityDetail = function (id) {
+    var getActivityDetail = function (self, id) {
       setTimeout(function () {
         $.ajax({
           url: '/activity/' + id,
@@ -164,6 +167,17 @@ define(['jquery', 'asyncStorage'],
             totalClimb: data.activity.total_climb,
             path: data.activity.path
           });
+
+          var startTime = Date.parse(data.activity.startTime || data.activity.start_time) / 1000;
+          var day = (self.currentTime - startTime) / 60 / 60 / 24;
+
+          if (day < 8.0) {
+            var distanceVal = parseInt(body.find('.distance-value').text(), 10);
+            var calorieVal = parseInt(body.find('.calorie-value').text(), 10);
+
+            body.find('.distance-value').text(Math.round(distanceVal + (data.activity.total_distance) / 1000));
+            body.find('.calorie-value').text(calorieVal + data.activity.total_calories);
+          }
         }).fail(function (err) {
           console.log('could not get data for ', id, err);
         });
@@ -179,7 +193,7 @@ define(['jquery', 'asyncStorage'],
         }
 
         asyncStorage.setItem('activityIds', self.activityIds);
-        getActivityDetail(id);
+        getActivityDetail(self, id);
       }
     };
 
@@ -212,6 +226,11 @@ define(['jquery', 'asyncStorage'],
           loadCachedActivities(self, callback);
         }
       });
+    },
+
+    this.getDetail = function (activity) {
+      console.log('got here')
+      body.find('#detail').removeClass('hidden');
     }
   };
 

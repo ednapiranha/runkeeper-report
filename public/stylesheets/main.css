@@ -196,6 +196,18 @@ ul.activities li p:last-child {
     width: 230px;
 }
 
+#detail {
+    background-color: #f00;
+    height: 200px;
+    position: fixed;
+    top: 30px;
+    width: 300px;
+}
+
+.hidden {
+    display: none;
+}
+
 @media screen and (max-width: 510px) {
     ul.activities li {
         width: 260px;
