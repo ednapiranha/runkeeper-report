@@ -28,6 +28,7 @@ define(['jquery', 'asyncStorage'],
         if (day < 8.0) {
           switch (data[i].type.toLowerCase()) {
             case 'hiking':
+            case 'cycling':
             case 'walking':
               minutes += Math.round(data[i].duration / 60);
               break;
