@@ -12,6 +12,8 @@ A lightweight reporting dashboard of your Runkeeper activities.
 
 > cp local.json-dist local.json
 
+> cp public/javascripts/settings.js-dist public/javascripts/settings.js
+
 > npm install
 
 ## Register your application
