@@ -230,7 +230,6 @@ define(['jquery', 'asyncStorage'],
     },
 
     this.getDetail = function (activity) {
-      console.log('got here')
       body.find('#detail').removeClass('hidden');
     }
   };
