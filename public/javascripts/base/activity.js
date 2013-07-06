@@ -1,5 +1,5 @@
-define(['jquery', 'asyncStorage'],
-  function($, asyncStorage) {
+define(['jquery', 'asyncStorage', './googlemap'],
+  function($, asyncStorage, googlemap) {
   'use strict';
 
   var RK_URL = 'https://api.runkeeper.com';
@@ -145,7 +145,18 @@ define(['jquery', 'asyncStorage'],
         },
         dataType: 'json'
       }).done(function (data) {
-        callback(null, data.items);
+        var count = 1;
+
+        for (var i = 0; i < data.items.length; i ++) {
+          data.items[i].id = data.items[i].uri.split('/').reverse()[0];
+          data.items[i].startTime = data.items[i].start_time;
+
+          if (count === data.items.length) {
+            callback(null, data.items);
+          }
+
+          count ++;
+        }
       }).fail(function (err) {
         callback(err);
       });
@@ -178,6 +189,7 @@ define(['jquery', 'asyncStorage'],
 
             body.find('.distance-value').text(Math.round(distanceVal + (data.activity.total_distance) / 1000));
             body.find('.calorie-value').text(calorieVal + data.activity.total_calories);
+            body.find('#')
           }
         }).fail(function (err) {
           console.log('could not get data for ', id, err);
@@ -215,6 +227,7 @@ define(['jquery', 'asyncStorage'],
               callback(err);
             } else {
               cacheActivities(self, data);
+
               callback(null, {
                 minutes: totalMinutes(self, data),
                 distance: totalDistance(self, self.activities),
@@ -230,6 +243,7 @@ define(['jquery', 'asyncStorage'],
     },
 
     this.getDetail = function (activity) {
+      googlemap.drawMap(activity.path);
       body.find('#detail').removeClass('hidden');
     }
   };

@@ -152,7 +152,7 @@ ul.activities li {
     padding: 7px 10px;
 }
 
-ul.activities li p {
+ul.activities li p, time {
     color: #777;
     display: table-col;
     float: left;

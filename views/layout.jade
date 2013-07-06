@@ -9,14 +9,15 @@ html
     link(rel='stylesheet', href='/stylesheets/main.css')
 
   body
-    header
-      if session
-        a(href='/logout') Log out
-      else
-        a(href='/auth/runkeeper') Log in with Runkeeper
+    #wrapper
+      header
+        if session
+          a(href='/logout') Log out
+        else
+          a(href='/auth/runkeeper') Log in with Runkeeper
 
-    block content
-    #footer
+      block content
+      #footer
 
     script(src='/javascripts/lib/indexedDBShim.js', type='text/javascript')
     script(src='/javascripts/require.js', data-main='/javascripts/config')

@@ -22,12 +22,12 @@
            data-action="show-activity" data-id="{{ activity.id }}">
           <p>{{ activity.type }}</p>
           <p class="duration">{{ activity.duration }}</p>
-          <p>{{ activity.startTime }}</p>
+          <time>{{ activity.startTime }}</time>
         </a>
       </li>
     {% endfor %}
   </ul>
 </div>
 <div id="detail" class="hidden">
-
+  <div id="map-canvas"></div>
 </div>
