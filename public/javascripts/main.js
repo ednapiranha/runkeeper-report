@@ -26,8 +26,6 @@ define(['jquery', 'utils', 'settings', 'base/activity', 'nunjucks', 'templates']
   });
 
   body.on('click', function (ev) {
-    ev.preventDefault();
-
     var self = $(ev.target);
 
     if (self.parent().hasClass('activity-link')) {
@@ -36,6 +34,7 @@ define(['jquery', 'utils', 'settings', 'base/activity', 'nunjucks', 'templates']
 
     switch (self.data('action')) {
       case 'show-activity':
+        ev.preventDefault();
         activity.getDetail(self);
         break;
 
