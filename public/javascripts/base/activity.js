@@ -243,8 +243,10 @@ define(['jquery', 'asyncStorage', './googlemap'],
     },
 
     this.getDetail = function (activity) {
-      googlemap.drawMap(activity.path);
-      body.find('#detail').removeClass('hidden');
+      asyncStorage.getItem('activity:' + activity.data('id'), function (a) {
+        googlemap.drawMap(a.path);
+        body.find('#detail').removeClass('hidden');
+      });
     }
   };
 

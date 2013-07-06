@@ -38,7 +38,7 @@ define(['jquery', 'utils', 'settings', 'base/activity', 'nunjucks', 'templates']
         activity.getDetail(self);
         break;
 
-      default:
+      case 'close':
         body.find('#detail').addClass('hidden');
         break;
     }

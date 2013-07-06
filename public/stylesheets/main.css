@@ -56,8 +56,13 @@ table {
 
 body {
     font-family: 'LeagueGothicRegular', Arial, sans-serif;
-    padding: 20px;
     position: relative;
+}
+
+#wrapper {
+    margin: 0 auto;
+    position: relative;
+    width: 320px;
 }
 
 a {
@@ -68,7 +73,7 @@ header {
     background-color: #111;
     padding: 5px 10px;
     position: absolute;
-    right: 20px;
+    right: 0;
     top: 0;
 }
 
@@ -106,7 +111,7 @@ h3 {
 .column:first-child {
     margin-right: 10px;
     overflow: hidden;
-    width: 280px;
+    width: 320px;
 }
 
 .overview {
@@ -202,6 +207,15 @@ ul.activities li p:last-child {
     position: fixed;
     top: 30px;
     width: 300px;
+}
+
+#map-canvas {
+    border-radius: 2px;
+    display: block;
+    float: left;
+    height: 320px;
+    position: relative;
+    width: 320px;
 }
 
 .hidden {

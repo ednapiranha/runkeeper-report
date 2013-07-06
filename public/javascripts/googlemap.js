@@ -5,21 +5,25 @@ define(['jquery'],
 
   var line;
 
+  var addNewPoint = function(e) {
+    var path = line.getPath();
+    path.push(e.latLng);
+  };
+
   var self = {
     drawMap: function(pointItems) {
       var mapDiv = document.getElementById('map-canvas');
-      var center = Math.floor(pointItems.length / 2);
       var map = new google.maps.Map(mapDiv, {
-        center: new google.maps.LatLng(pointItems[center].latitude,
-                                       pointItems[center].longitude),
+        center: new google.maps.LatLng(pointItems[0].lat,
+                                       pointItems[pointItems.length - 1].lon),
         zoom: 13,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       });
       var path = [];
 
       for (var i = 0; i < pointItems.length; i ++) {
-        path.push(new google.maps.LatLng(pointItems[i].latitude,
-                                         pointItems[i].longitude));
+        path.push(new google.maps.LatLng(pointItems[i].lat,
+                                         pointItems[i].lon)
       }
 
       line = new google.maps.Polyline({
