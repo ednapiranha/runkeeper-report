@@ -1,0 +1,22 @@
+{
+  "version": "0.0.1",
+  "name": "TrackWeek",
+  "description": "Tracks your weekly Runkeeper activities",
+  "launch_path": "/",
+  "icons": {
+    "16": "/images/logo-16.png",
+    "72": "/images/logo-72.png",
+    "114": "/images/logo-114.png",
+    "128": "/images/logo-128.png",
+    "256": "/images/logo-256.png"
+  },
+  "developer": {
+    "name": "Edna Piranha",
+    "url": "http://generalgoods.net"
+  },
+  "installs_allowed_from": ["https://marketplace.firefox.com"],
+  "appcache_path": "/manifest.appcache",
+  "locales": {
+  },
+  "default_locale": "en"
+}

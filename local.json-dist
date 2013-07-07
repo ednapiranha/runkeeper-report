@@ -5,5 +5,6 @@
     "session_cookie": "session",
     "rk_client_id": "your rk client id",
     "rk_client_secret": "your rk secret",
-    "redis_db": 0
+    "redis_db": 0,
+    "debug": true
 }

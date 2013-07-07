@@ -44,7 +44,7 @@ passport.use(new RunkeeperStrategy({
 ));
 
 // routes
-require('./routes')(app, isLoggedIn);
+require('./routes')(app, nconf, isLoggedIn);
 require('./routes/auth')(app, passport);
 
 app.listen(process.env.PORT || nconf.get('port'));

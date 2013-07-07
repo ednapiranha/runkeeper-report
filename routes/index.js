@@ -5,9 +5,17 @@ var request = require('request');
 var RK_URL = 'https://api.runkeeper.com/';
 var TIMEOUT = 10000;
 
-module.exports = function (app, isLoggedIn) {
+module.exports = function (app, nconf, isLoggedIn) {
+  var appcache = '';
+
+  if (!nconf.get('debug')) {
+    appcache = '/manifest.appcache';
+  }
+
   app.get('/', function (req, res) {
-    res.render('index');
+    res.render('index', {
+      appcache: appcache
+    });
   });
 
   app.get('/get_token', isLoggedIn, function (req, res) {
@@ -15,7 +23,9 @@ module.exports = function (app, isLoggedIn) {
   });
 
   app.get('/dashboard', isLoggedIn, function (req, res) {
-    res.render('dashboard');
+    res.render('dashboard', {
+      appcache: appcache
+    });
   });
 
   // Using this to get around CORS issue on this specific API call to Runkeeper

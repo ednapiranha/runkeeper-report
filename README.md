@@ -16,6 +16,8 @@ A lightweight reporting dashboard of your Runkeeper activities.
 
 > npm install
 
+> npm -g install grunt-cli
+
 ## Register your application
 
 Sign into Runkeeper and register an app [http://runkeeper.com/partner/applications](http://runkeeper.com/partner/applications)

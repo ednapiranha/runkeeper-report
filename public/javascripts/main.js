@@ -33,6 +33,10 @@ define(['jquery', 'utils', 'settings', 'base/activity', 'nunjucks', 'templates']
     }
 
     switch (self.data('action')) {
+      case 'login':
+        body.find('.logging-in').removeClass('hidden');
+        break;
+
       case 'show-activity':
         ev.preventDefault();
         activity.getDetail(self);

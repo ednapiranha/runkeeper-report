@@ -54,10 +54,14 @@ table {
     font-style: normal;
 }
 
+html, body {
+    height: 100%;
+    position: relative;
+}
+
 body {
     font-family: 'CabinRegular', Arial, sans-serif;
     overflow-x: hidden;
-    position: relative;
 }
 
 #wrapper {
@@ -68,6 +72,20 @@ body {
 
 a {
     text-decoration: none;
+}
+
+.logging-in {
+    background-color: rgba(256, 256, 256, 0.8);
+    bottom: 0;
+    color: #111;
+    font-size: 40px;
+    left: 0;
+    padding-top: 50px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    z-index: 3;
 }
 
 .home-wrapper {
