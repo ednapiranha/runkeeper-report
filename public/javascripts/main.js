@@ -38,6 +38,14 @@ define(['jquery', 'utils', 'settings', 'base/activity', 'nunjucks', 'templates']
         activity.getDetail(self);
         break;
 
+      case 'logout':
+        ev.preventDefault();
+        var verifyLogout = confirm('Are you sure you want to sign out?');
+        if (verifyLogout) {
+          document.location.href = '/logout';
+        }
+        break;
+
       case 'close':
         body.find('#detail').addClass('hidden');
         body.find('#map-canvas').empty();

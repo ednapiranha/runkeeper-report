@@ -1,7 +1,7 @@
 !!! 5
 html
   head
-    title Runkeeper Report
+    title TrackWeek
     meta(content='width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0', name='viewport')
     meta(content='yes', name='apple-mobile-web-app-capable')
     meta(content='chrome=1', http-equiv='X-UA-Compatible')
@@ -12,11 +12,14 @@ html
     #wrapper
       header
         if session
-          a(href='/logout', class='close') x
+          a(href='/logout', class='close', data-action='logout') x
         else
-          h1.home TrackWeek
-          p.intro Track your weekly activities
+          .home-wrapper
+            h1.home TrackWeek
+            p.intro Track your weekly activities
           a(href='/auth/runkeeper') Sign in with Runkeeper
+          .logging-in
+            p Signing in ...
 
       block content
       #footer
