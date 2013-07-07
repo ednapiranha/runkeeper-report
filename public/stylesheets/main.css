@@ -203,31 +203,32 @@ ul.activities li p:last-child {
 
 #detail {
     background-color: #f00;
-    height: 200px;
+    height: 400px;
     position: fixed;
-    top: 30px;
-    width: 300px;
+    top: 0;
+    width: 320px;
+    z-index: 2;
+}
+
+.close {
+    background-color: #111;
+    color: #fff;
+    font-size: 28px;
+    line-height: 28px;
+    padding: 2px 10px;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 #map-canvas {
-    border-radius: 2px;
     display: block;
-    float: left;
     height: 320px;
-    position: relative;
+    position: absolute;
+    top: 80px;
     width: 320px;
 }
 
 .hidden {
     display: none;
-}
-
-@media screen and (max-width: 510px) {
-    ul.activities li {
-        width: 260px;
-    }
-    ul.activities li p:last-child {
-        clear: both;
-        margin: 10px 0 0 0;
-    }
 }
