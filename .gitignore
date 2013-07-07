@@ -4,3 +4,5 @@ local.json
 public/javascripts/settings.js
 public/javascripts/build
 public/javascripts/lib/nunjucks.js
+public/javascripts/template.js
+public/stylesheets/main-min.css
