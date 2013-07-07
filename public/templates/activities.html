@@ -1,5 +1,5 @@
 <div class="column">
-  <h2>7 Day Overview</h2>
+  <h2 class="header">7 Day Overview</h2>
   <div class="overview">
     <h3>Minutes</h3>
     <span>{{ data.minutes }}</span>
@@ -14,7 +14,7 @@
   </div>
 </div>
 <div class="column">
-  <h2>Recent Activity</h2>
+  <h2 class="header">Recent Activity</h2>
   <ul class="activities">
     {% for activity in data.activities %}
       <li class="{{ activity.type.toLowerCase() }}">
@@ -29,8 +29,12 @@
   </ul>
 </div>
 <div id="detail" class="hidden">
-  <h2 class="activity-type"></h2>
-  <p class="duration">[]</p>
+  <h2 class="activity-type"><span></span></h2>
   <a href="javascript:;" class="close" data-action="close">x</a>
   <div id="map-canvas"></div>
+  <div class="detail-meta">
+    <p class="duration">Duration: <span></span></p>
+    <p class="calories">Calories: <span></span></p>
+    <time></time>
+  </div>
 </div>

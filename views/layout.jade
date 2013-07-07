@@ -12,8 +12,10 @@ html
     #wrapper
       header
         if session
-          a(href='/logout') Sign out
+          a(href='/logout', class='close') x
         else
+          h1.home TrackWeek
+          p.intro Track your weekly activities
           a(href='/auth/runkeeper') Sign in with Runkeeper
 
       block content

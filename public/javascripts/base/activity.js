@@ -246,10 +246,14 @@ define(['jquery', 'asyncStorage', './googlemap'],
       body.find('#detail').removeClass('hidden');
 
       asyncStorage.getItem('activity:' + activity.data('id'), function (a) {
-        console.log(formatDuration(a))
         googlemap.drawMap(a.path);
-        body.find('#detail .activity-type').text(a.type);
-        body.find('#detail .duration').text(formatDuration([a])[0].duration);
+        body.find('#detail .activity-type span')
+            .removeClass()
+            .addClass(a.type.toLowerCase())
+            .text(a.type);
+        body.find('#detail .duration span').text(formatDuration([a])[0].duration);
+        body.find('#detail time').text(a.startTime);
+        body.find('#detail .calories span').text(a.calories);
       });
     }
   };
