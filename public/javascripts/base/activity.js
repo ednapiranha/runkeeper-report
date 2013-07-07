@@ -165,7 +165,6 @@ define(['jquery', 'asyncStorage', './googlemap'],
           method: 'GET',
           dataType: 'json'
         }).done(function (data) {
-          console.log('got here')
           asyncStorage.setItem('activity:' + id, {
             id: id,
             duration: data.activity.duration,
@@ -218,11 +217,11 @@ define(['jquery', 'asyncStorage', './googlemap'],
 
       asyncStorage.getItem('lastChecked', function (lastTime) {
         if (!lastTime || self.currentTime - lastTime >= MAX_TIME) {
-          asyncStorage.setItem('lastChecked', self.currentTime);
           getOnlineActivities(self.accessToken, function (err, data) {
             if (err) {
               callback(err);
             } else {
+              asyncStorage.setItem('lastChecked', self.currentTime);
               cacheActivities(self, data);
 
               callback(null, {
