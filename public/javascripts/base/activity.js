@@ -2,7 +2,6 @@ define(['jquery', 'asyncStorage', './googlemap'],
   function($, asyncStorage, googlemap) {
   'use strict';
 
-  var RK_URL = 'https://api.runkeeper.com';
   var MAX_TIME = 3600; // 1 hour limit for hitting Runkeeper's server
 
   var body = $('body');
@@ -137,15 +136,12 @@ define(['jquery', 'asyncStorage', './googlemap'],
 
     var getOnlineActivities = function (accessToken, callback) {
       $.ajax({
-        url: RK_URL + '/fitnessActivities',
+        url: '/fitnessActivities',
         method: 'GET',
-        headers: {
-          'Accept': 'application/vnd.com.runkeeper.FitnessActivityFeed+json',
-          'Authorization': 'Bearer ' + accessToken
-        },
         dataType: 'json'
       }).done(function (data) {
         var count = 1;
+        data = data.feed;
 
         for (var i = 0; i < data.items.length; i ++) {
           data.items[i].id = data.items[i].uri.split('/').reverse()[0];
@@ -169,6 +165,7 @@ define(['jquery', 'asyncStorage', './googlemap'],
           method: 'GET',
           dataType: 'json'
         }).done(function (data) {
+          console.log('got here')
           asyncStorage.setItem('activity:' + id, {
             id: id,
             duration: data.activity.duration,
@@ -194,7 +191,7 @@ define(['jquery', 'asyncStorage', './googlemap'],
         }).fail(function (err) {
           console.log('could not get data for ', id, err);
         });
-      }, 1);
+      }, 1000);
     };
 
     var cacheActivities = function (self, data) {
