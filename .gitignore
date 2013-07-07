@@ -3,3 +3,4 @@ node_modules
 local.json
 public/javascripts/settings.js
 public/javascripts/build
+public/javascripts/lib/nunjucks.js
