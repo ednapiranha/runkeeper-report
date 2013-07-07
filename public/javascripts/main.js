@@ -39,7 +39,7 @@ define(['jquery', 'utils', 'settings', 'base/activity', 'nunjucks', 'templates']
         break;
 
       case 'close':
-        body.find('#detail').addClass('hidden')
+        body.find('#detail').addClass('hidden');
         body.find('#map-canvas').empty();
         break;
     }

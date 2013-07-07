@@ -95,10 +95,6 @@ h2 {
     margin: 20px 0 10px;
 }
 
-h2:first-child {
-    margin-top: 10px;
-}
-
 h3 {
     float: left;
     font-size: 35px;
@@ -202,20 +198,29 @@ ul.activities li p:last-child {
 }
 
 #detail {
-    background-color: #f00;
-    height: 400px;
+    background-color: #fff;
+    height: 360px;
     position: fixed;
     top: 0;
     width: 320px;
     z-index: 2;
 }
 
+#detail h2, #detail .duration {
+    color: #111;
+    float: left;
+    font-size: 35px;
+    margin-top: 5px;
+    padding: 0 5px;
+    width: 130px;
+}
+
 .close {
     background-color: #111;
     color: #fff;
-    font-size: 28px;
-    line-height: 28px;
-    padding: 2px 10px;
+    font-size: 35px;
+    line-height: 35px;
+    padding: 2px 20px;
     position: absolute;
     right: 0;
     top: 0;
@@ -225,7 +230,7 @@ ul.activities li p:last-child {
     display: block;
     height: 320px;
     position: absolute;
-    top: 80px;
+    top: 40px;
     width: 320px;
 }
 

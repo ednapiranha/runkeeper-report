@@ -243,9 +243,13 @@ define(['jquery', 'asyncStorage', './googlemap'],
     },
 
     this.getDetail = function (activity) {
+      body.find('#detail').removeClass('hidden');
+
       asyncStorage.getItem('activity:' + activity.data('id'), function (a) {
+        console.log(formatDuration(a))
         googlemap.drawMap(a.path);
-        body.find('#detail').removeClass('hidden');
+        body.find('#detail .activity-type').text(a.type);
+        body.find('#detail .duration').text(formatDuration([a])[0].duration);
       });
     }
   };
