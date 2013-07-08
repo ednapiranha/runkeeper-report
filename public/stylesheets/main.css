@@ -54,6 +54,18 @@ table {
     font-style: normal;
 }
 
+@-webkit-keyframes pulse {
+    0% { background-color: #fff; }
+    50% { background-color: #21ccea; }
+    100% { background-color: #fff; }
+}
+
+@keyframes pulse {
+    0% { background-color: #fff; }
+    50% { background-color: #21ccea; }
+    100% { background-color: #fff; }
+}
+
 html, body {
     height: 100%;
     position: relative;
@@ -74,7 +86,9 @@ a {
     text-decoration: none;
 }
 
-.logging-in {
+.loading {
+    -webkit-animation: pulse 5s infinite ease-in;
+    animation: pulse 5s infinite ease-in;
     background-color: rgba(256, 256, 256, 0.8);
     bottom: 0;
     color: #111;
@@ -106,13 +120,12 @@ header {
 }
 
 header a {
-    color: #111;
+    color: #18a4de;
     font-size: 30px;
 }
 
 header a:hover {
-    background-color: #111;
-    color: #fff;
+    color: #e13868;
 }
 
 .intro {
@@ -294,6 +307,7 @@ a.activity-link:hover {
 #map-canvas {
     display: block;
     height: 320px;
+    overflow: hidden;
     position: absolute;
     top: 42px;
     width: 320px;

@@ -15,11 +15,15 @@ define(['jquery', 'utils', 'settings', 'base/activity', 'nunjucks', 'templates']
 
   // Get access token for Runkeeper and all past data
   $.getJSON('/get_token', function (data) {
+    var loading = body.find('.loading');
     activity.accessToken = data.token;
+    loading.find('p').text('Loading ...');
+    loading.removeClass('hidden');
     activity.getAll(function (err, data) {
       if (err) {
         console.log(err);
       } else {
+        loading.addClass('hidden');
         utils.loadTemplate('activities.html', data);
       }
     });
@@ -34,7 +38,7 @@ define(['jquery', 'utils', 'settings', 'base/activity', 'nunjucks', 'templates']
 
     switch (self.data('action')) {
       case 'login':
-        body.find('.logging-in').removeClass('hidden');
+        body.find('.loading').removeClass('hidden');
         break;
 
       case 'show-activity':

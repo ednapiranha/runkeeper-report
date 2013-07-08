@@ -119,7 +119,9 @@ define(['jquery', 'asyncStorage', './googlemap'],
 
             if (self.activities.length === self.activityIds.length) {
               self.activities = self.activities.sort(function (a, b) {
-                return parseInt(b.id, 10) - parseInt(a.id, 10);
+                if (a.id && b.id) {
+                  return parseInt(b.id, 10) - parseInt(a.id, 10);
+                }
               });
 
               callback(null, {
