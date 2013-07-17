@@ -6,16 +6,8 @@ var RK_URL = 'https://api.runkeeper.com/';
 var TIMEOUT = 10000;
 
 module.exports = function (app, nconf, isLoggedIn) {
-  var appcache = '';
-
-  if (!nconf.get('debug')) {
-    appcache = '/manifest.appcache';
-  }
-
   app.get('/', function (req, res) {
-    res.render('index', {
-      appcache: appcache
-    });
+    res.render('index');
   });
 
   app.get('/get_token', isLoggedIn, function (req, res) {
