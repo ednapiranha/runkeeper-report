@@ -15,9 +15,7 @@ module.exports = function (app, nconf, isLoggedIn) {
   });
 
   app.get('/dashboard', isLoggedIn, function (req, res) {
-    res.render('dashboard', {
-      appcache: appcache
-    });
+    res.render('dashboard');
   });
 
   app.get('/fitnessActivities', function (req, res) {
