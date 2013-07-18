@@ -20,10 +20,10 @@ define(['jquery', 'utils', 'settings', 'base/activity', 'nunjucks', 'templates']
     loading.find('p').text('Loading ...');
     loading.removeClass('hidden');
     activity.getAll(function (err, data) {
+      loading.addClass('hidden');
       if (err) {
-        console.log(err);
+        alert('There was an error logging in: ', err);
       } else {
-        loading.addClass('hidden');
         utils.loadTemplate('activities.html', data);
       }
     });
