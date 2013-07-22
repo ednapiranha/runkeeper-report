@@ -244,7 +244,9 @@ define(['jquery', 'asyncStorage', './googlemap'],
       body.find('#detail').removeClass('hidden');
 
       asyncStorage.getItem('activity:' + activity.data('id'), function (a) {
-        googlemap.drawMap(a.path);
+        if (a.path.length > 0) {
+          googlemap.drawMap(a.path);
+        }
         body.find('#detail .activity-type span')
             .removeClass()
             .addClass(a.type.toLowerCase())
