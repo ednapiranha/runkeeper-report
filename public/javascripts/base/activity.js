@@ -94,6 +94,8 @@ define(['jquery', 'asyncStorage', './googlemap'],
 
         if (seconds > 0 && seconds < 10) {
           seconds = '0' + seconds;
+        } else {
+          seconds = '00';
         }
 
         if (hour > 0) {
@@ -254,6 +256,7 @@ define(['jquery', 'asyncStorage', './googlemap'],
         body.find('#detail .duration span').text(formatDuration([a])[0].duration);
         body.find('#detail time').text(a.startTime);
         body.find('#detail .calories span').text(a.calories);
+        body.find('#detail .distance span').text(Math.round(a.totalDistance / 10) / 100);
       });
     }
   };
